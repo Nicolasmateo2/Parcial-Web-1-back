@@ -6,7 +6,7 @@ import com.parcialback.parcial.exception.ValidacionException;
 import java.time.LocalDate;
 import java.util.List;
 
-public interface TorneoService {
+public interface torneoService {
 
     List<Torneo> listarTodos();
 

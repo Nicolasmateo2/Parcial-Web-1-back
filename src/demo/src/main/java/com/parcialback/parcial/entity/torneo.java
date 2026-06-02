@@ -48,4 +48,12 @@ public class Torneo {
 
     @org.springframework.data.annotation.Transient
     private List<Equipo> equipos = new ArrayList<>();
+
+    public Torneo(Long id, String nombre, String deporte, LocalDate fechaInicio, String ciudad) {
+        this.id = id;
+        this.nombre = nombre;
+        this.deporte = deporte;
+        this.fechaInicio = fechaInicio;
+        this.ciudad = ciudad;
+    }
 }
