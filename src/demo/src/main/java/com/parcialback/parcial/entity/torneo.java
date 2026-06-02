@@ -61,5 +61,5 @@ public class torneo {
     public void setCiudad(String ciudad) {
         this.ciudad = ciudad;
     }
-
+    
 }
