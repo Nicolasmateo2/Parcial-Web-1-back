@@ -1,65 +1,51 @@
 package com.parcialback.parcial.entity;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Entity
+@Table(name = "torneos")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Torneo {
 
-
-public class torneo {
-  
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank(message = "El nombre es obligatorio")
+    @Size(min = 2, max = 150, message = "El nombre debe tener entre 2 y 150 caracteres")
+    @Column(nullable = false, length = 150)
     private String nombre;
+
+    @NotBlank(message = "El deporte es obligatorio")
+    @Size(max = 80, message = "El deporte no puede exceder 80 caracteres")
+    @Column(nullable = false, length = 80)
     private String deporte;
-    private String fechaInicio;
+
+    @NotNull(message = "La fecha de inicio es obligatoria")
+    @Column(nullable = false)
+    private LocalDate fechaInicio;
+
+    @NotBlank(message = "La ciudad es obligatoria")
+    @Size(max = 100, message = "La ciudad no puede exceder 100 caracteres")
+    @Column(nullable = false, length = 100)
     private String ciudad;
 
-    public torneo() {
-    }
-
-    public torneo(Long id, String nombre, String deporte, String fechaInicio, String ciudad) {
-        this.id = id;
-        this.nombre = nombre;
-        this.deporte = deporte;
-        this.fechaInicio = fechaInicio;
-        this.ciudad = ciudad;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getDeporte() {
-        return deporte;
-    }
-
-    public void setDeporte(String deporte) {
-        this.deporte = deporte;
-    }
-
-    public String getFechaInicio() {
-        return fechaInicio;
-    }
-
-    public void setFechaInicio(String fechaInicio) {
-        this.fechaInicio = fechaInicio;
-    }
-
-    public String getCiudad() {
-        return ciudad;
-    }
-
-    public void setCiudad(String ciudad) {
-        this.ciudad = ciudad;
-    }
-    
+    @org.springframework.data.annotation.Transient
+    private List<Equipo> equipos = new ArrayList<>();
 }
